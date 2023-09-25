@@ -15,6 +15,9 @@ class ClientAPI(
     generics.GenericAPIView
 ):
 
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+
     def get_permissions(self):
         if self.request.method == 'GET':
             return [permissions.IsAdminUser()]
@@ -22,9 +25,6 @@ class ClientAPI(
             return [permissions.IsAdminUser()]
         return []
         
-
-    queryset = Client.objects.all()
-    serializer_class = ClientSerializer
 
     def get(self, request, *args, **kwargs):
         client = self.get_queryset().all()
@@ -45,6 +45,9 @@ class ClientDetailAPI(
     generics.GenericAPIView
 ):
 
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+
     def get_permissions(self):
         if self.request.method == 'GET':
             return [permissions.IsAdminUser()]
@@ -54,8 +57,6 @@ class ClientDetailAPI(
             return [permissions.IsAdminUser()]
         return []
 
-    queryset = Client.objects.all()
-    serializer_class = ClientSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -73,6 +74,9 @@ class BlogAPI(
     generics.GenericAPIView
 ):
 
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+
     def get_permissions(self):
         if self.request.method == 'GET':
             return [permissions.AllowAny()]
@@ -80,8 +84,6 @@ class BlogAPI(
             return [permissions.IsAdminUser()]
         return []
 
-    queryset = Blog.objects.all()
-    serializer_class = BlogSerializer
 
     def get(self, request, *args, **kwargs):
         blog = self.get_queryset().all()
@@ -102,6 +104,9 @@ class BlogDetailAPI(
     generics.GenericAPIView
 ):
 
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+
     def get_permissions(self):
         if self.request.method == 'GET':
             return [permissions.IsAuthenticated()]
@@ -111,8 +116,6 @@ class BlogDetailAPI(
             return [permissions.IsAdminUser()]
         return []
 
-    queryset = Blog.objects.all()
-    serializer_class = BlogSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -129,15 +132,15 @@ class SponsorAPI(
     generics.GenericAPIView
 ):
 
+    queryset = Sponsor.objects.all()
+    serializer_class = SponsorSerializer
+
     def get_permissions(self):
         if self.request.method == 'GET':
             return [permissions.AllowAny()]
         elif self.request.method == 'POST':
             return [permissions.IsAdminUser()]
         return []
-
-    queryset = Sponsor.objects.all()
-    serializer_class = SponsorSerializer
 
     def get(self, request, *args, **kwargs):
         sponsor = self.get_queryset().all()
@@ -158,6 +161,9 @@ class SponsorDetailAPI(
     generics.GenericAPIView
 ):
 
+    queryset = Sponsor.objects.all()
+    serializer_class = SponsorSerializer
+
     def get_permissions(self):
         if self.request.method == 'GET':
             return [permissions.IsAuthenticated()]
@@ -167,8 +173,6 @@ class SponsorDetailAPI(
             return [permissions.IsAdminUser()]
         return []
 
-    queryset = Sponsor.objects.all()
-    serializer_class = SponsorSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
